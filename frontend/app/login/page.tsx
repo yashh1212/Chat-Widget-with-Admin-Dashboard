@@ -28,18 +28,18 @@ export default function LoginPage() {
     const password = formData.get("password");
 
     try {
-      const response = await fetch("http://localhost:5000/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", // Make sure the credentials are sent with the request
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://demo-backend-1-jnh0.onrender.com/api/admin/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       if (response.ok) {
-        // Set sessionLogin to true in session storage
         sessionStorage.setItem("sessionLogin", "true");
-
-        // Redirect to the dashboard
         router.replace("/dashboard");
       } else {
         const data = await response.json();
@@ -67,7 +67,12 @@ export default function LoginPage() {
         <CardHeader>
           <CardTitle>Admin Login</CardTitle>
           <CardDescription>
-            Sign in to access the admin dashboard
+            Sign in to access the admin dashboard.
+            <br />
+            <span className="text-sm text-muted-foreground">
+              Test credentials: <strong>admin@gmail.com</strong> /{" "}
+              <strong>Yash@123</strong>
+            </span>
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -78,13 +83,21 @@ export default function LoginPage() {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="admin@example.com"
+                placeholder="admin@gmail.com"
+                defaultValue="admin@gmail.com"
                 required
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" name="password" type="password" required />
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Yash@123"
+                defaultValue="Yash@123"
+                required
+              />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Sign in"}

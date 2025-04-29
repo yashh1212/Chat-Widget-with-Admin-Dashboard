@@ -339,7 +339,7 @@
   // Initialize Socket.IO when script loads
   script.onload = function () {
     // Connect to server
-    socket = io("http://localhost:5000");
+    socket = io("https://demo-backend-1-jnh0.onrender.com");
 
     socket.on("connect", function () {
       console.log("Connected to chat server");

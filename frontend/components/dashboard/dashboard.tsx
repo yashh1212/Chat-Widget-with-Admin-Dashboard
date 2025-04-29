@@ -36,9 +36,7 @@ const navItems: NavItem[] = [
     title: "Conversations",
     href: "/dashboard/conversations",
     icon: <MessageSquare className="h-5 w-5" />,
-  }
-  
-
+  },
 ];
 
 export function Dashboard({ children }: { children: React.ReactNode }) {
@@ -83,7 +81,7 @@ export function Dashboard({ children }: { children: React.ReactNode }) {
     // Set sessionLogin to false and redirect to login page
     sessionStorage.setItem("sessionLogin", "false");
     setIsLoggedIn(false);
-    window.location.href = "/login"; // Redirect to login page
+    window.location.href = "/"; // Redirect to login page
   };
 
   return (

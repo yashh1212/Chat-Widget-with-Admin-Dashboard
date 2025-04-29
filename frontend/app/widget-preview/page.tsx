@@ -8,7 +8,8 @@ export default function WidgetPreviewPage() {
   useEffect(() => {
     // Create script element
     const script = document.createElement("script");
-    script.src = "http://localhost:5000/widget/chat-widget.js"; // Update with actual path
+    script.src =
+      "https://demo-backend-1-jnh0.onrender.com/widget/chat-widget.js"; // Update with actual path
     script.async = true;
     
     // Append to document
@@ -43,7 +44,7 @@ export default function WidgetPreviewPage() {
               Reset Widget
             </Button>
             <Button asChild>
-              <a href="/dashboard">Back to Dashboard</a>
+              <a href="/">Back to Dashboard</a>
             </Button>
           </div>
         </Card>

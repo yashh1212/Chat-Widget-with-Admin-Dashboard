@@ -48,7 +48,7 @@ export default function ConversationDetailPage() {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `http://localhost:5000/api/conversations/${params.id}`
+          `https://demo-backend-1-jnh0.onrender.com/api/conversations/${params.id}`
         );
         setConversation(data.conversation);
         setMessages(data.messages);

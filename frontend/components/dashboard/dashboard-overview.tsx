@@ -26,7 +26,9 @@ export function DashboardOverview() {
     const fetchStats = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get("http://localhost:5000/api/stats");
+        const { data } = await axios.get(
+          "https://demo-backend-1-jnh0.onrender.com/api/stats"
+        );
         setStats(data);
       } catch (error) {
         console.error("Error fetching stats:", error);
@@ -68,7 +70,9 @@ export function DashboardOverview() {
               {loading ? (
                 <Skeleton className="h-8 w-24" />
               ) : (
-                <div className="text-2xl font-bold">{stats?.totalConversations || 0}</div>
+                <div className="text-2xl font-bold">
+                  {stats?.totalConversations || 0}
+                </div>
               )}
             </CardContent>
           </Card>
@@ -95,7 +99,9 @@ export function DashboardOverview() {
               {loading ? (
                 <Skeleton className="h-8 w-24" />
               ) : (
-                <div className="text-2xl font-bold">{stats?.totalMessages || 0}</div>
+                <div className="text-2xl font-bold">
+                  {stats?.totalMessages || 0}
+                </div>
               )}
             </CardContent>
           </Card>
@@ -121,7 +127,9 @@ export function DashboardOverview() {
               {loading ? (
                 <Skeleton className="h-8 w-24" />
               ) : (
-                <div className="text-2xl font-bold">{stats?.recentConversations || 0}</div>
+                <div className="text-2xl font-bold">
+                  {stats?.recentConversations || 0}
+                </div>
               )}
             </CardContent>
           </Card>
@@ -140,8 +148,8 @@ export function DashboardOverview() {
               ) : (
                 <ResponsiveContainer width="100%" height={350}>
                   <LineChart data={stats?.chartData || []}>
-                    <XAxis 
-                      dataKey="date" 
+                    <XAxis
+                      dataKey="date"
                       stroke="#888888"
                       fontSize={12}
                       tickLine={false}
@@ -154,7 +162,10 @@ export function DashboardOverview() {
                       axisLine={false}
                       tickFormatter={(value) => `${value}`}
                     />
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      className="stroke-muted"
+                    />
                     <Tooltip />
                     <Line
                       type="monotone"
@@ -178,13 +189,16 @@ export function DashboardOverview() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="rounded-md  bg-muted p-4">
-                  <pre className="text-xs text-wrap break-all pd-2">
-                    <code>{`<script src="${domain}/widget/chat-widget.js"></script>`}</code>
-                  </pre>
+                <div className="rounded-md bg-muted p-4">
+                  <div className="overflow-x-auto">
+                    <pre className="text-xs whitespace-pre">
+                      <code>{`<script src="https://demo-backend-1-jnh0.onrender.com/widget/chat-widget.js"></script>`}</code>
+                    </pre>
+                  </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  This will add a chat bubble to the bottom right of your website that opens a real-time chat window when clicked.
+                  This will add a chat bubble to the bottom right of your
+                  website that opens a real-time chat window when clicked.
                 </p>
               </div>
             </CardContent>
@@ -206,8 +220,8 @@ export function DashboardOverview() {
               ) : (
                 <ResponsiveContainer width="100%" height={350}>
                   <LineChart data={stats?.chartData || []}>
-                    <XAxis 
-                      dataKey="date" 
+                    <XAxis
+                      dataKey="date"
                       stroke="#888888"
                       fontSize={12}
                       tickLine={false}
@@ -220,7 +234,10 @@ export function DashboardOverview() {
                       axisLine={false}
                       tickFormatter={(value) => `${value}`}
                     />
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      className="stroke-muted"
+                    />
                     <Tooltip />
                     <Line
                       type="monotone"

@@ -35,7 +35,9 @@ export function ConversationsList() {
     const fetchConversations = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get("http://localhost:5000/api/conversations");
+        const { data } = await axios.get(
+          "https://demo-backend-1-jnh0.onrender.com/api/conversations"
+        );
         setConversations(data);
       } catch (error) {
         console.error("Error fetching conversations:", error);
@@ -51,10 +53,16 @@ export function ConversationsList() {
     try {
       setLoading(true);
       if (searchQuery.trim()) {
-        const { data } = await axios.get(`http://localhost:5000/api/search?query=${encodeURIComponent(searchQuery)}`);
+        const { data } = await axios.get(
+          `https://demo-backend-1-jnh0.onrender.com/api/search?query=${encodeURIComponent(
+            searchQuery
+          )}`
+        );
         setConversations(data);
       } else {
-        const { data } = await axios.get("http://localhost:5000/api/conversations");
+        const { data } = await axios.get(
+          "https://demo-backend-1-jnh0.onrender.com/api/conversations"
+        );
         setConversations(data);
       }
     } catch (error) {
@@ -111,13 +119,16 @@ export function ConversationsList() {
               <TableBody>
                 {conversations.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={4} className="text-center py-6 text-muted-foreground">
+                    <TableCell
+                      colSpan={4}
+                      className="text-center py-6 text-muted-foreground"
+                    >
                       No conversations found
                     </TableCell>
                   </TableRow>
                 ) : (
                   conversations.map((conversation) => (
-                    <TableRow 
+                    <TableRow
                       key={conversation._id}
                       className="cursor-pointer hover:bg-muted/50"
                       onClick={() => handleRowClick(conversation._id)}
@@ -125,16 +136,22 @@ export function ConversationsList() {
                       <TableCell className="font-medium">
                         <div className="flex items-center gap-2">
                           <div className="h-2 w-2 rounded-full bg-green-500" />
-                          <span className="truncate max-w-[200px]">{conversation.visitorId}</span>
+                          <span className="truncate max-w-[200px]">
+                            {conversation.visitorId}
+                          </span>
                         </div>
                       </TableCell>
                       <TableCell>
                         {format(new Date(conversation.startedAt), "PP")}
                       </TableCell>
                       <TableCell>
-                        {formatDistance(new Date(conversation.lastMessageAt), new Date(), {
-                          addSuffix: true,
-                        })}
+                        {formatDistance(
+                          new Date(conversation.lastMessageAt),
+                          new Date(),
+                          {
+                            addSuffix: true,
+                          }
+                        )}
                       </TableCell>
                       <TableCell>
                         {formatDistance(
